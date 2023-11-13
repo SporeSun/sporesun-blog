@@ -1,0 +1,19 @@
+{{!-- Use the main layout --}}
+{{#extend "layouts/main"}}
+
+{{!-- Dashboard content --}}
+{{#block "body"}}
+    <h1>Dashboard</h1>
+    <a href="/posts/new">Create New Post</a>
+    {{#if userPosts}}
+        {{#each userPosts}}
+            {{> post}}
+            <a href="/posts/edit/{{this.id}}">Edit</a>
+            <a href="/posts/delete/{{this.id}}">Delete</a>
+        {{/each}}
+    {{else}}
+        <p>You have not created any posts yet.</p>
+    {{/if}}
+{{/block}}
+
+{{/extend}}

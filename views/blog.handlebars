@@ -1,0 +1,22 @@
+{{!-- Use the main layout --}}
+{{#extend "layouts/main"}}
+
+{{!-- Post content --}}
+{{#block "body"}}
+    <article>
+        <h2>{{post.title}}</h2>
+        <p>{{post.content}}</p>
+        <p>Posted by {{post.author}} on {{post.date}}</p>
+    </article>
+
+    {{#if post.comments}}
+        <h3>Comments</h3>
+        {{#each post.comments}}
+            {{> comment}}
+        {{/each}}
+    {{/if}}
+
+    {{!-- Comment form goes here if logged in --}}
+{{/block}}
+
+{{/extend}}
