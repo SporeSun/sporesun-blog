@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>My Blog</title>
+    <!-- Add any common CSS files here -->
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav>
+        <!-- Navigation links -->
+        <a href="/">Home</a>
+        {{#if loggedIn}}
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        {{else}}
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        {{/if}}
+    </nav>
+
+    <!-- Main content area -->
+    {{{body}}}
+
+    <!-- Footer -->
+    <footer>
+        <p>© My Blog</p>
+    </footer>
+
+    <!-- Add any common JavaScript files here -->
+</body>
+</html>
