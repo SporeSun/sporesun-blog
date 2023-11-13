@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 // Importing individual route files
-const userRoutes = require('./users');
-const postRoutes = require('./posts');
-const commentRoutes = require('./comments');
+const userRoutes = require('./userRoute.js');
+const postRoutes = require('./postRoute.js');
+const commentRoutes = require('./commentRoutes.js');
 
 // Middleware to use specific routes
 router.use('/users', userRoutes);
