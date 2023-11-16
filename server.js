@@ -8,9 +8,7 @@ const sequelize = require('./config/connection.js');
 require('dotenv').config();
 
 const app = express();
-
 // Set up Handlebars.js engine with custom helpers
-const hbs = exphbs.create({ /* your custom helpers */ });
 
 // Session setup
 const myStore = new SequelizeStore({
@@ -30,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 // Set Handlebars as the default template engine
-app.engine('handlebars', hbs.engine);
+app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
 // Routes
@@ -38,5 +36,5 @@ app.use(routes);
 
 // Sync sequelize models to the database, then start server
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log(`Server now listening on port ${PORT}`));
+  app.listen(3001, () => console.log(`Server now listening on 3001 ${3001}`));
 });
