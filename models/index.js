@@ -1,18 +1,16 @@
 const Sequelize = require('sequelize');
 const config = require('../config/connection.js'); // Adjust this path based on your config file location
+config.dialect = 'mysql'
 const sequelize = new Sequelize(
   config.database,
   config.username,
   config.password,
-  config,
-  {
-    dialect:'mysql'
-  }
+  config
 );
 // Import models
-const User = require('./User')(sequelize, Sequelize.DataTypes);
-const Post = require('./Post')(sequelize, Sequelize.DataTypes);
-const Comment = require('./Comment')(sequelize, Sequelize.DataTypes);
+const User = require('./User');
+const Post = require('./Post');
+const Comment = require('./Comment');
 
 // Associations
 User.hasMany(Post, {
