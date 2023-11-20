@@ -7,9 +7,6 @@ const routes = require('./controller');
 const sequelize = require('./config/connection.js');
 require('dotenv').config();
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
 
 const app = express();
 // Set up Handlebars.js engine with custom helpers
@@ -32,6 +29,10 @@ app.use(session({
     db: sequelize, // Pass the Sequelize instance here
   })
 }));
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 // Middleware
 app.use(express.json());
