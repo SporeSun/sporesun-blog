@@ -4,6 +4,9 @@ const { User } = require('../../models');
 const bcrypt = require('bcrypt');
 
 // User registration
+router.get('/register', (req, res) => {
+    res.render('registration');
+});
 router.post('/register', async (req, res) => {
     try {
         // Hash the password
@@ -21,7 +24,7 @@ router.post('/register', async (req, res) => {
             req.session.username = newUser.username;
             req.session.loggedIn = true;
 
-            res.status(200).json(newUser);
+            res.redirect('/api/dashboard');
         });
     } catch (err) {
         console.error(err);
@@ -31,6 +34,9 @@ router.post('/register', async (req, res) => {
 
 
 // User login
+router.get('/login', (req, res) => {
+    res.render('login');
+});
 router.post('/login', async (req, res) => {
     try {
         // Find the user by username
@@ -56,6 +62,7 @@ router.post('/login', async (req, res) => {
             req.session.loggedIn = true;
 
             res.json({ user: userData, message: 'You are now logged in!' });
+            res.redirect('/api/dashboard'); // Redirect to dashboard
         });
     } catch (err) {
         console.error(err);

@@ -11,11 +11,11 @@
         <!-- Navigation links -->
         <a href="/">Home</a>
         {{#if loggedIn}}
-            <a href="/dashboard">Dashboard</a>
-            <a href="/logout">Logout</a>
+            <a href="/api/dashboard">Dashboard</a>
+            <button id="logout">Logout</button>
         {{else}}
-            <a href="/login">Login</a>
-            <a href="/register">Register</a>
+            <a href="/api/users/login">Login</a>
+            <a href="/api/users/register">Register</a>
         {{/if}}
     </nav>
 

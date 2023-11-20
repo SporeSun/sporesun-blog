@@ -1,8 +1,8 @@
 {{!-- Use the main layout --}}
-{{#extend "layouts/main"}}
+
 
 {{!-- Insert content into the {{{body}}} placeholder --}}
-{{#block "body"}}
+<div>
     <h1>Welcome to My Blog</h1>
     {{#if posts}}
         {{#each posts}}
@@ -11,6 +11,6 @@
     {{else}}
         <p>No posts to display.</p>
     {{/if}}
-{{/block}}
+</div>
 
-{{/extend}}
+

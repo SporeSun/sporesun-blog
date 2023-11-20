@@ -9,26 +9,33 @@ require('dotenv').config();
 
 const app = express();
 // Set up Handlebars.js engine with custom helpers
-
+const hbs = exphbs.create();
 // Session setup
-const myStore = new SequelizeStore({
+store = new SequelizeStore({
   db: sequelize, // Pass the Sequelize instance here
 });
 app.use(session({
   secret: 'super secret', // Use a more secure secret in production
-  cookie: {},
+  cookie: {
+    maxAge: 300000,
+    httpOnly: true,
+    secure: false,
+    sameSite: 'strict',
+  },
   resave: false,
   saveUninitialized: true,
-  store: myStore
+  store: new SequelizeStore({
+    db: sequelize, // Pass the Sequelize instance here
+  })
 }));
 
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Set Handlebars as the default template engine
-app.engine('handlebars', exphbs());
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 // Routes

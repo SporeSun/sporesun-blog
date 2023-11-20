@@ -1,11 +1,10 @@
 {{!-- Use the main layout --}}
-{{#extend "layouts/main"}}
+
 
 {{!-- Dashboard content --}}
-{{#block "body"}}
+<div>
     <h1>Dashboard</h1>
-    <a href="/posts/new">Create New Post</a>
-    <button id="logout">Logout</button> <!-- Logout button -->
+    <a href="/api/posts/new">Create New Post</a>
     {{#if userPosts}}
         {{#each userPosts}}
             {{> post}}
@@ -15,10 +14,7 @@
     {{else}}
         <p>You have not created any posts yet.</p>
     {{/if}}
-{{/block}}
-
-{{#block "scripts"}}
+</div>
+<div>
     <script src="/js/logout.js"></script>
-{{/block}}
-
-{{/extend}}
+</div>

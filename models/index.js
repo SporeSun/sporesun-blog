@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
-const config = require('../config/connection.js'); // Adjust this path based on your config file location
+const config = require('../config/connection.js');
+ // Adjust this path based on your config file location
 // config.dialect = 'mysql'
 // const sequelize = new Sequelize(
 //   config.database,
@@ -11,6 +12,7 @@ const config = require('../config/connection.js'); // Adjust this path based on 
 const User = require('./User');
 const Post = require('./Post');
 const Comment = require('./Comment');
+const DashboardSettings = require('./DashboardSettings');
 
 // Associations
 User.hasMany(Post, {
@@ -43,6 +45,14 @@ Comment.belongsTo(Post, {
   onDelete: 'CASCADE',
 });
 
+User.hasOne(DashboardSettings, {
+  foreignKey: 'userId',
+  onDelete: 'CASCADE',
+});
+
+DashboardSettings.belongsTo(User, {
+  foreignKey: 'userId',
+});
 // Export models and sequelize instance
 module.exports = {
   //sequelize,
@@ -50,4 +60,5 @@ module.exports = {
   User,
   Post,
   Comment,
+  DashboardSettings,
 };

@@ -13,7 +13,7 @@ document.getElementById('register-form').addEventListener('submit', async (event
     });
 
     if (response.ok) {
-        document.location.replace('/dashboard');
+        document.location.replace('/api/dashboard');
     } else {
         alert('Failed to register');
     }
