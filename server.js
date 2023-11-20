@@ -6,6 +6,10 @@ const exphbs = require('express-handlebars');
 const routes = require('./controller');
 const sequelize = require('./config/connection.js');
 require('dotenv').config();
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
 
 const app = express();
 // Set up Handlebars.js engine with custom helpers
@@ -43,5 +47,5 @@ app.use(routes);
 
 // Sync sequelize models to the database, then start server
 sequelize.sync({ force: false }).then(() => {
-  app.listen(3001, () => console.log(`Server now listening on 3001 ${3001}`));
+  app.listen(PORT, () => console.log(`Server now listening on 3001 ${PORT}`));
 });
