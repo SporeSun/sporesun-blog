@@ -33,10 +33,10 @@ User.init(
   {
     hooks: {
       // Before saving the user, hash the password
-      async beforeCreate(userData) {
-        userData.password = await bcrypt.hash(userData.password, 10);
-        return userData;
-      },
+      // async beforeCreate(userData) {
+      //   userData.password = await bcrypt.hash(userData.password, 10);
+      //   return userData;
+      // },
       async beforeUpdate(userData) {
         if (userData.changed('password')) {
           userData.password = await bcrypt.hash(userData.password, 10);

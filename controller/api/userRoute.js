@@ -43,15 +43,15 @@ router.post('/login', async (req, res) => {
         const userData = await User.findOne({ where: { username: req.body.username } });
 
         if (!userData) {
-            res.status(400).json({ message: 'Incorrect username or password, please try again' });
+            res.status(400).json({ message: 'Incorrect username, please try again' });
             return;
         }
 
         // Check the password
-        const validPassword = await bcrypt.compare(req.body.password, userData.password);
+        const validPassword = await userData.checkPassword(req.body.password);
 
         if (!validPassword) {
-            res.status(400).json({ message: 'Incorrect username or password, please try again' });
+            res.status(400).json({ message: 'Incorrect password, please try again' });
             return;
         }
 
@@ -60,8 +60,6 @@ router.post('/login', async (req, res) => {
             req.session.userId = userData.id;
             req.session.username = userData.username;
             req.session.loggedIn = true;
-
-            res.json({ user: userData, message: 'You are now logged in!' });
             res.redirect('/api/dashboard'); // Redirect to dashboard
         });
     } catch (err) {
