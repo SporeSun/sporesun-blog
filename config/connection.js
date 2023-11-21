@@ -7,7 +7,7 @@ const sequelize = new Sequelize(
     process.env.DB_USER, // Database username
     process.env.DB_PASSWORD, // Database password
     {
-        host: process.env.DB_HOST, // Database host
+        url: process.env.DATABASE_HOST || '127.0.0.1', // Database host
         dialect: 'mysql', // Assuming you are using MySQL
         port: process.env.DB_PORT || 3306, // Database port, default is 3306 for MySQL
         logging: false, // Disable logging; you can turn it on if you need SQL query logging
