@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 require('dotenv').config();
-
+g
 // Creating a Sequelize instance
 const sequelize = new Sequelize(
     process.env.DB_NAME, // Database name
@@ -11,6 +11,10 @@ const sequelize = new Sequelize(
         dialect: 'mysql', // Assuming you are using MySQL
         port: process.env.DB_PORT || 3306, // Database port, default is 3306 for MySQL
         logging: false, // Disable logging; you can turn it on if you need SQL query logging
+        ssl: {
+            require: true,
+            rejectUnauthorized: false, // Important for some Heroku database configurations
+        },
         define: {
             freezeTableName: true // Prevents Sequelize from pluralizing table names
         },
